@@ -2,6 +2,7 @@ const btn = document.getElementById('btn-start');//get btn element from html;
 const btnGameOver = document.getElementById('btn-game-over');
 const scoreBoard = document.getElementById('score');
 let bombList = [];
+let squareCleared = [];
 const gameOver = document.querySelector('section.game-over');
 const gameWin = document.querySelector('section.game-win');
 
@@ -16,7 +17,7 @@ btn.addEventListener('click',function(){//add eventlistener on click;
 
     let bombList = [];//initialize array for bombList
     const bombListArmed = bombsGen(1, numSquares, bombList);//generate numbers-bomb pushed into array Armed
-    squareWrapperGen(numSquares, widthClass, bombListArmed);//create game-board, squareWrapper, based on parameters that define: number of squares (based on difficulty), width of each square, which square is a bomb
+    squareWrapperGen(numSquares, widthClass, bombListArmed);//create game-board, = squareWrapper, based on parameters that define: number of squares (based on difficulty), width of each square, which square is a bomb
     const square = document.querySelectorAll(".square");//select each square through class
     square.forEach(square => {
     square.addEventListener('click',function(){
@@ -27,7 +28,10 @@ btn.addEventListener('click',function(){//add eventlistener on click;
                 scoreBoard.innerHTML =`
                     Your score: ${score}
                 `;
+            } else if (squareCleared.includes(+ square.innerHTML)) {//if the square clicked has already been clicked: no more point for this square
+                score += 0;
             } else {
+                squareCleared.push(+square.innerHTML);
                 score += 1;
                 console.log('punteggio: ' + score);
             };
@@ -61,7 +65,7 @@ function squareWrapperGen(numSquares, widthClass, blacklist){
     squareWrapper.className = 'd-flex flex-wrap db-square-wrapper game-on'
     let tempHtml = '';
     for(i = 0; i < numSquares; i++){
-        if(blacklist.includes(i + 1)){//if i reoresents an armed bomb, then apply class "bomb" other than the same other classes
+        if(blacklist.includes(i + 1)){//if i represents an armed bomb, then apply class "bomb" other than the same other classes
         tempHtml += `
             <div class="square ${widthClass} d-flex justify-content-center align-items-center bomb">
                     ${i + 1}
