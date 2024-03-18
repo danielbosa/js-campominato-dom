@@ -11,6 +11,7 @@
 
 const btn = document.getElementById('btn-start');
 const btnGameOver = document.getElementById('btn-game-over');
+const scoreBoard = document.getElementById('score');
 let bombList = [];
 const gameOver = document.querySelector('section.game-over');
 
@@ -20,6 +21,8 @@ buttons.addEventListener('click',function(){
 
     const [datum1, datum2] = chooseLevel()
     
+    let score = 0;
+
     let bombList = [];
     const LISTABOMBE = bombsGen(1, datum1, bombList);
 
@@ -32,6 +35,12 @@ buttons.addEventListener('click',function(){
         if(LISTABOMBE.includes(+ square.innerHTML)){
             console.log('hai perso');
             gameOver.classList.remove('d-none');
+            scoreBoard.innerHTML =`
+                Your score: ${score}
+            `;
+        } else {
+            score += 1;
+            console.log('punteggio: ' + score);
         }
         });
     });
