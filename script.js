@@ -13,17 +13,18 @@ const btn = document.getElementById('btn-start');
 let bombList = [];
 
 btn.addEventListener('click',function(){
-    let bombList = [];
-    bombsGen(1, datum1, bombList);
-
     const [datum1, datum2] = chooseLevel()
-    squareWrapperGen(datum1, datum2);
+    
+    let bombList = [];
+    const LISTABOMBE = bombsGen(1, datum1, bombList);
 
-    const box = document.querySelectorAll(".square");
-    box.forEach(box => {
-    box.addEventListener('click',function(){
-        box.classList.toggle('clicked');
-        console.log(box.innerHTML);
+    squareWrapperGen(datum1, datum2, LISTABOMBE);
+
+    const square = document.querySelectorAll(".square");
+    square.forEach(square => {
+    square.addEventListener('click',function(){
+        square.classList.toggle('clicked');
+        console.log(square.innerHTML);
         });
     });
 });
@@ -38,16 +39,24 @@ btn.addEventListener('click',function(){
 46) push tempHtml into squareWrapper: so there is only one element to be pushed into html (and not every div/square once at time);
 */
 
-function squareWrapperGen(numSquares, widthClass){
+function squareWrapperGen(numSquares, widthClass, blacklist){
     const squareWrapper = document.querySelector('section');
     squareWrapper.className = 'd-flex flex-wrap db-square-wrapper'
     let tempHtml = '';
     for(i = 0; i < numSquares; i++){
+        if(blacklist.includes(i + 1)){
         tempHtml += `
+            <div class="square ${widthClass} d-flex justify-content-center align-items-center BOMBA">
+                    ${i + 1}
+            </div>
+            `
+        } else {
+            tempHtml += `
             <div class="square ${widthClass} d-flex justify-content-center align-items-center">
                     ${i + 1}
             </div>
             `
+        }
     }
     squareWrapper.innerHTML = tempHtml;
 };
@@ -104,6 +113,7 @@ for (i = 0; i < 16; i++){
     generateUniqueRandomNumber(min, max, blacklist);
     }
     console.log(blacklist);
+    return blacklist;
 }
 
 
