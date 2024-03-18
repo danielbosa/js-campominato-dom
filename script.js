@@ -11,6 +11,7 @@
 
 const btn = document.getElementById('btn-start');
 let bombList = [];
+const gameOver = document.querySelector('section.game-over');
 
 btn.addEventListener('click',function(){
     const [datum1, datum2] = chooseLevel()
@@ -24,9 +25,15 @@ btn.addEventListener('click',function(){
     square.forEach(square => {
     square.addEventListener('click',function(){
         square.classList.toggle('clicked');
-        console.log(square.innerHTML);
+        if(LISTABOMBE.includes(+ square.innerHTML)){
+            console.log('hai perso');
+            gameOver.classList.remove('d-none');
+        }
         });
     });
+
+    
+
 });
 
 /*EXPLANATION FUNCTION
@@ -40,13 +47,13 @@ btn.addEventListener('click',function(){
 */
 
 function squareWrapperGen(numSquares, widthClass, blacklist){
-    const squareWrapper = document.querySelector('section');
+    const squareWrapper = document.querySelector('section.game-on');
     squareWrapper.className = 'd-flex flex-wrap db-square-wrapper'
     let tempHtml = '';
     for(i = 0; i < numSquares; i++){
         if(blacklist.includes(i + 1)){
         tempHtml += `
-            <div class="square ${widthClass} d-flex justify-content-center align-items-center BOMBA">
+            <div class="square ${widthClass} d-flex justify-content-center align-items-center bomb">
                     ${i + 1}
             </div>
             `
@@ -59,6 +66,13 @@ function squareWrapperGen(numSquares, widthClass, blacklist){
         }
     }
     squareWrapper.innerHTML = tempHtml;
+    /*const squareBombClicked = document.querySelectorAll(".bomb");
+    squareBombClicked.forEach(squareBombClicked => {
+        squareBombClicked.addEventListener('click',function(){
+        
+        console.log('Hai perso');
+        });
+    });*/
 };
 
 /*EXPLANATION FUNCTION
