@@ -14,10 +14,20 @@
 </head>
 
 <body>
-    <section class="game-over test d-none">
+    <section class="game-over d-none">
         <div class="db-centered game-over-msg px-5 py-3 text-center">
             <h2 class="text-uppercase">game over</h2>
             <button type="button" id="btn-game-over" class="db-btn-game-over mt-2">Try again</button>
+            <div class="mt-2" id="score"></div>
+        </div>
+        <div class="jigsaw-face-img">
+            <img class="img-fluid" src="./img/jigsaw-trasp.png" alt="">
+        </div>
+    </section>
+    <section class="game-win d-none">
+        <div class="db-centered game-win-msg px-5 py-3 text-center">
+            <h2 class="text-uppercase">you win</h2>
+            <button type="button" id="btn-game-over" class="db-btn-game-over mt-2">Try harder</button>
             <div class="mt-2" id="score"></div>
         </div>
     </section>
