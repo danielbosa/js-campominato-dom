@@ -24,7 +24,7 @@ btn.addEventListener('click',function(){
     const square = document.querySelectorAll(".square");
     square.forEach(square => {
     square.addEventListener('click',function(){
-        square.classList.toggle('clicked');
+        square.classList.toggle('clicked','true');
         if(LISTABOMBE.includes(+ square.innerHTML)){
             console.log('hai perso');
             gameOver.classList.remove('d-none');
