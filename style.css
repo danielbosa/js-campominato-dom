@@ -77,7 +77,7 @@ header div img{
     background-color: red;
 }
 
-
+/* GAME OVER */
 .test{
     background-color: rgba(255, 0, 0, 0.363);
     width: 100%;
@@ -94,4 +94,12 @@ header div img{
 
 .game-over-msg{
     background-color: red;
+    border-radius: 10px;
+}
+
+.db-btn-game-over{
+    padding: 6px 12px;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
 }

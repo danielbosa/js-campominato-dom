@@ -10,10 +10,14 @@
 */
 
 const btn = document.getElementById('btn-start');
+const btnGameOver = document.getElementById('btn-game-over');
 let bombList = [];
 const gameOver = document.querySelector('section.game-over');
 
-btn.addEventListener('click',function(){
+[btn, btnGameOver].forEach(function(buttons) {
+buttons.addEventListener('click',function(){
+    gameOver.classList.add('d-none');
+
     const [datum1, datum2] = chooseLevel()
     
     let bombList = [];
@@ -35,6 +39,7 @@ btn.addEventListener('click',function(){
     
 
 });
+})
 
 /*EXPLANATION FUNCTION
 35) declaration fuction squareWrapperGen with two parameters;
