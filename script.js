@@ -5,6 +5,7 @@ let bombList = [];
 const gameOver = document.querySelector('section.game-over');
 const gameWin = document.querySelector('section.game-win');
 
+
 btn.addEventListener('click',function(){//add eventlistener on click;
     gameOver.classList.add('d-none'); //hide section
     gameWin.classList.add('d-none'); //hide section
@@ -38,6 +39,12 @@ btn.addEventListener('click',function(){//add eventlistener on click;
         });
     });
 });
+
+//To restart and try again, when "try again" button is clicked
+btnGameOver.addEventListener('click',function(){
+    squareWrapperGen(0, '', []);
+    gameOver.classList.add('d-none');
+})
 
 /*EXPLANATION FUNCTION
 - declaration fuction squareWrapperGen with two parameters;
